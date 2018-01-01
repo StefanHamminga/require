@@ -1,0 +1,24 @@
+/**@file
+@brief Simple helper to require a specific C++ language standard.
+
+Some language features of newer standards have clear errors indicating use of an
+outdated standard. Because this is not always the case these helper includes
+will enforce a strong and clear error instead. Especially when combined with
+`-Wfatal-errors`.
+
+@example
+```c++
+#include <require/std/gnu++14>
+```
+*/
+
+#pragma once
+
+// static_assert(__cplusplus >= 201103L, "C++11 or higher required");
+// static_assert(__cplusplus >= 201402L, "C++14 or higher required");
+// static_assert(__cplusplus >= 201703L, "C++17 or higher required");
+static_assert(__cplusplus > 201703L, "C++2a or higher required");
+
+// #ifndef __GNUG__
+//   #error "This program requires GNU extensions (`-std=gnu++nn`)."
+// #endif
